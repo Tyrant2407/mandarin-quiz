@@ -1,86 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap'); /* Font modern */
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Latar belakang gradien lembut */
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    color: #333; /* Warna teks default */
 }
 
 .quiz-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    padding: 35px 40px;
+    border-radius: 15px; /* Sudut lebih bulat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Bayangan lebih halus dan dalam */
     width: 100%;
-    max-width: 700px;
+    max-width: 750px; /* Sedikit lebih lebar untuk konten */
     text-align: center;
+    border-top: 5px solid #007bff; /* Aksen warna di atas */
 }
 
 #question-text {
-    margin-bottom: 20px;
-    font-size: 1.4em;
-    min-height: 60px; /* Memberi ruang agar layout stabil */
+    margin-bottom: 25px;
+    font-size: 1.6em; /* Ukuran font soal lebih besar */
+    font-weight: 600; /* Sedikit lebih tebal */
+    color: #2c3e50; /* Warna teks soal lebih gelap */
+    min-height: 70px;
+    line-height: 1.4;
 }
 
 .btn-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
-    gap: 15px; /* Jarak antar tombol */
-    margin-bottom: 20px;
+    grid-template-columns: 1fr; /* Default 1 kolom untuk mobile */
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+/* Untuk layar yang lebih lebar, gunakan 2 kolom */
+@media (min-width: 576px) {
+    .btn-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
+    background-color: #f8f9fa; /* Latar belakang tombol lebih terang */
+    color: #007bff; /* Warna teks tombol utama */
+    border: 2px solid #007bff; /* Border dengan warna utama */
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-size: 1.05em; /* Ukuran font pilihan sedikit lebih besar */
+    font-weight: 500;
+    transition: all 0.3s ease; /* Transisi lebih halus untuk semua properti */
+    text-align: left; /* Teks rata kiri pada tombol */
 }
 
-.btn:hover {
-    background-color: #0056b3;
+.btn:hover:not([disabled]) { /* Efek hover hanya jika tombol tidak disabled */
+    background-color: #007bff;
+    color: white;
+    transform: translateY(-2px); /* Efek sedikit terangkat */
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.btn:active:not([disabled]) {
+    transform: translateY(0px);
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2);
 }
 
 .btn.correct {
     background-color: #28a745;
+    color: white;
+    border-color: #28a745;
 }
 
 .btn.wrong {
     background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
 }
 
+.btn[disabled] { /* Gaya untuk tombol yang sudah dipilih/nonaktif */
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+
 .controls {
-    margin-top: 20px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0; /* Garis pemisah */
 }
 
 #feedback-text {
-    min-height: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    min-height: 28px; /* Lebih tinggi untuk feedback */
+    font-weight: 600; /* Lebih tebal */
+    font-size: 1.1em;
+    margin-bottom: 15px;
 }
 
 .next-btn, #restart-button {
-    background-color: #5cb85c;
+    background-color: #007bff; /* Warna utama yang konsisten */
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 25px; /* Padding lebih besar */
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
+    font-size: 1.1em; /* Font lebih besar */
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .next-btn:hover, #restart-button:hover {
-    background-color: #4cae4c;
+    background-color: #0056b3; /* Warna hover lebih gelap */
+    transform: translateY(-1px);
+}
+
+.next-btn:active, #restart-button:active {
+    transform: translateY(0px);
 }
 
 .hide {
     display: none;
+}
+
+#score-container h2 {
+    color: #007bff; /* Warna judul skor */
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+#score-container p {
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+#score-container span {
+    font-weight: bold;
 }
